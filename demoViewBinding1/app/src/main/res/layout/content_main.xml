@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="str"
+            type="String" />
+        <variable
+            name="index"
+            type="int"/>
+
+        <variable
+            name="account"
+            type="com.android.demoviewbinding1.Account" />
+
+        <variable
+            name="handlers"
+            type="com.android.demoviewbinding1.MainActivity.MyClickHandlers" />
+    </data>
+
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="5dp"
+        android:layout_marginTop="@dimen/paddingtop"
+        tools:context=".MainActivity"
+        tools:showIn="@layout/activity_main">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{String.valueOf(index)}'/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.valueOf(index>30 ? @dimen/paddingtop : @dimen/paddingleft)}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{account.username}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{account.password}" />
+
+        <TextView
+            android:id="@+id/number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{account.number+str+index}"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{handlers::onButtonClick}"
+            android:text="CLICK" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v) -> handlers.onButtonClickWithParam(v, account)}"
+            android:text="CLICK WITH PARAM" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="LONG PRESS"
+            android:onLongClick="@{handlers::onButtonLongPressed}" />
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:profileImage="@{account.profileImage}"
+            android:HoangCV="@{account.padding}"/>
+
+    </LinearLayout>
+</layout>
